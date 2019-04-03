@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/BierDoktor/Text-To-List/issues"
   },
-  "homepage": "https://github.com/BierDoktor/Text-To-List#readme"
+  "homepage": "https://github.com/BierDoktor/Text-To-List#readme",
+  "dependencies": {
+    "minimist": "^1.2.0"
+  }
 }

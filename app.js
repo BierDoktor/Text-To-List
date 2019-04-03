@@ -1,21 +1,31 @@
 const fs = require('fs');
+const args = require('minimist')(process.argv.slice(2));
 
 /**
  * checking if we got a filename and a separator on the command line
  */
-if (process.argv.length < 3 && process.argv.length > 4) {
-    console.log('Usage: node app.js FILENAME SEPARATOR');
+if (args.file === undefined) {
+    console.log('Usage: node app.js --file filename --separator separator --duplicates boolean');
     process.exit(1);
 }
 
-const file = process.argv[2];
-let separator = process.argv[3];
+const file = args.file;
+let separator = args.separator;
+let removeDuplicates = false;
 
 /**
  * solution for a whitespace separator
  */
 if (separator === undefined) {
     separator = ' ';
+}
+
+/**
+ * allowing to remove duplicates if wanted
+ */
+if (args.duplicates === 'true') {
+    console.log('amk');
+    removeDuplicates = true;
 }
 
 /**
@@ -27,7 +37,16 @@ fs.readFile(file, 'utf8', (err, data) => {
     /**
      * transforming data into an array
      */
-    const array = data.split(separator).map(i => i);
+    let array = data.split(separator).map(i => i);
+
+    /**
+     * removing duplicates
+     */
+    if (removeDuplicates) {
+        array = array.filter((i, pos) => {
+            return array.indexOf(i) == pos;
+        });
+    }
 
     /**
     * writing the transformed data into a file
