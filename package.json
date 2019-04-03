@@ -1,0 +1,19 @@
+{
+  "name": "text-to-list",
+  "version": "1.0.0",
+  "description": "This tool converts text in a file to a list",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BierDoktor/Text-To-List.git"
+  },
+  "author": "Henrik Mölders",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BierDoktor/Text-To-List/issues"
+  },
+  "homepage": "https://github.com/BierDoktor/Text-To-List#readme"
+}
