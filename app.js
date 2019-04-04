@@ -60,6 +60,7 @@ fs.readFile(file, 'utf8', (err, data) => {
             }
         });
         array = Object.keys(unique);
+        console.log(unique);
     }
 
     /**
