@@ -11,7 +11,7 @@ if (args.file === undefined) {
 
 const file = args.file;
 let separator = args.separator;
-let removeDuplicates = false;
+let keepDuplicates = true;
 
 /**
  * solution for a whitespace separator
@@ -23,9 +23,8 @@ if (separator === undefined) {
 /**
  * allowing to remove duplicates if wanted
  */
-if (args.duplicates === 'true') {
-    console.log('amk');
-    removeDuplicates = true;
+if (args.duplicates === 'false') {
+    keepDuplicates = false;
 }
 
 /**
@@ -42,10 +41,25 @@ fs.readFile(file, 'utf8', (err, data) => {
     /**
      * removing duplicates
      */
-    if (removeDuplicates) {
-        array = array.filter((i, pos) => {
-            return array.indexOf(i) == pos;
+    if (!keepDuplicates) {
+        let unique = {};
+
+        array.forEach((i) => {
+            /**
+             * removing line breaks
+             */
+            i = i.replace('\n', '');
+
+            /**
+             * make sure to ignore case
+             */
+            i = i.toLowerCase();
+
+            if (!unique[i]) {
+                unique[i] = true;
+            }
         });
+        array = Object.keys(unique);
     }
 
     /**
